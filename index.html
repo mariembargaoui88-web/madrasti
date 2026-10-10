@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#087f8c">
+  <title>مدرستي | فضاء التعلّم</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#"><span class="brand-icon">م</span><span>مدرستي<small>نتعلّم معًا، وننجح معًا</small></span></a>
+  <nav><a href="#lessons">الدروس</a><a href="#about">عن التطبيق</a></nav>
+  <div id="account-actions"><button class="btn light" id="login-open">دخول المعلّم</button></div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="eyebrow">فضاء تعليمي للمرحلة الابتدائية</span>
+      <h1>كلّ درس يفتح<br><em>بابًا جديدًا للمعرفة.</em></h1>
+      <p>مكتبة رقمية تجمع الدروس والموارد التعليمية، وتتيح للمعلّمين مشاركة محتواهم مع التلاميذ بسهولة.</p>
+      <a class="btn primary" href="#lessons">اكتشف الدروس <span>←</span></a>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="sun"></div><div class="book book-one"></div><div class="book book-two"></div>
+      <div class="pencil"></div><div class="floating-note">اِقرأ · اِكتشف · اِنجح</div>
+      <div class="art-circle">✦</div>
+    </div>
+  </section>
+
+  <section class="quick-stats">
+    <div><span class="stat-icon">▤</span><strong>دروس منظّمة</strong><small>حسب المستوى والمادة</small></div>
+    <div><span class="stat-icon">▶</span><strong>فيديوهات تعليمية</strong><small>تعلّم بالشرح والمشاهدة</small></div>
+    <div><span class="stat-icon">⌂</span><strong>من أي جهاز</strong><small>الوصول عبر الإنترنت</small></div>
+  </section>
+
+  <section id="lessons" class="section">
+    <div class="section-heading"><div><span class="eyebrow">مكتبة التعلّم</span><h2>الدروس والموارد</h2></div><p>اختَر مستواك وابحث عن الدرس الذي تحتاجه.</p></div>
+    <div class="filters">
+      <input id="search" type="search" placeholder="ابحث عن درس أو كلمة..." aria-label="بحث">
+      <select id="grade-filter" aria-label="السنة الدراسية">
+        <option value="">كلّ السنوات</option><option value="1">السنة الأولى</option><option value="2">السنة الثانية</option><option value="3">السنة الثالثة</option><option value="4">السنة الرابعة</option><option value="5">السنة الخامسة</option><option value="6">السنة السادسة</option>
+      </select>
+      <select id="subject-filter" aria-label="المادة">
+        <option value="">كلّ المواد</option><option>العربية</option><option>الفرنسية</option><option>الرياضيات</option><option>الإيقاظ العلمي</option><option>التربية الإسلامية</option><option>التربية المدنية</option><option>أخرى</option>
+      </select>
+    </div>
+    <div id="lesson-status" class="notice">جارٍ الاتصال بالمكتبة التعليمية…</div>
+    <div id="lesson-grid" class="lesson-grid"></div>
+  </section>
+
+  <section id="about" class="about">
+    <div><span class="eyebrow">تعليم أقرب إلى التلميذ</span><h2>معًا من أجل مدرسة عمومية متجدّدة.</h2><p>«مدرستي» مشروع تعليمي يهدف إلى دعم التعلّم داخل المدرسة العمومية من خلال موارد رقمية منظّمة وسهلة الوصول.</p></div>
+    <div class="about-mark">م<span>مدرستي</span></div>
+  </section>
+  <footer><span>© مدرستي — مشروع تربوي رقمي</span><span>صُمّم لخدمة المعلّم والتلميذ</span></footer>
+</main>
+
+<div id="auth-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+  <div class="modal-card">
+    <button class="close" id="auth-close" aria-label="إغلاق">×</button>
+    <span class="eyebrow">فضاء المعلّم</span><h2 id="auth-title">مرحبًا بعودتك</h2>
+    <p class="muted">سجّل الدخول أو أنشئ حسابًا لنشر دروسك.</p>
+    <label>البريد الإلكتروني<input id="auth-email" type="email" autocomplete="email" placeholder="teacher@example.com"></label>
+    <label>كلمة المرور<input id="auth-password" type="password" autocomplete="current-password" placeholder="6 أحرف على الأقل"></label>
+    <label id="name-wrap" class="hidden">الاسم الكامل<input id="auth-name" type="text" placeholder="اسم المعلّم"></label>
+    <div class="auth-actions"><button class="btn primary" id="auth-submit">تسجيل الدخول</button><button class="text-btn" id="auth-toggle">إنشاء حساب جديد</button></div>
+    <p id="auth-message" class="form-message" role="status"></p>
+    <small class="muted">قد يطلب منك تأكيد بريدك الإلكتروني حسب إعدادات المشروع.</small>
+  </div>
+</div>
+
+<div id="teacher-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="teacher-title">
+  <div class="modal-card wide">
+    <button class="close" id="teacher-close" aria-label="إغلاق">×</button>
+    <span class="eyebrow">إدارة الموارد التعليمية</span><h2 id="teacher-title">أضف درسًا جديدًا</h2>
+    <p class="muted">الموارد المنشورة تصبح متاحة للتلاميذ عبر الإنترنت.</p>
+    <form id="lesson-form">
+      <label>عنوان الدرس<input id="lesson-title" required maxlength="120" placeholder="مثال: جمع الأعداد إلى 100"></label>
+      <div class="form-row">
+        <label>السنة الدراسية<select id="lesson-grade" required><option value="">اختر السنة</option><option value="1">السنة الأولى</option><option value="2">السنة الثانية</option><option value="3">السنة الثالثة</option><option value="4">السنة الرابعة</option><option value="5">السنة الخامسة</option><option value="6">السنة السادسة</option></select></label>
+        <label>المادة<select id="lesson-subject" required><option value="">اختر المادة</option><option>العربية</option><option>الفرنسية</option><option>الرياضيات</option><option>الإيقاظ العلمي</option><option>التربية الإسلامية</option><option>التربية المدنية</option><option>أخرى</option></select></label>
+      </div>
+      <label>شرح مختصر<textarea id="lesson-description" rows="3" maxlength="500" placeholder="ماذا سيتعلّم التلميذ؟"></textarea></label>
+      <label>ملف الدرس (اختياري — PDF أو صورة أو فيديو)<input id="lesson-file" type="file" accept=".pdf,.ppt,.pptx,.doc,.docx,.jpg,.jpeg,.png,.mp4,.webm"></label>
+      <label>أو رابط فيديو/مورد (اختياري)<input id="lesson-url" type="url" placeholder="https://..."></label>
+      <p class="muted tiny">في النسخة التجريبية المجانية، يحدّد التخزين السحابي حجم الملف وأنواعه. تجنّب رفع بيانات شخصية للتلاميذ.</p>
+      <button class="btn primary" id="publish-button" type="submit">نشر الدرس</button>
+      <p id="publish-message" class="form-message" role="status"></p>
+    </form>
+    <hr>
+    <h3>دروسي المنشورة</h3><div id="my-lessons" class="my-lessons"></div>
+  </div>
+</div>
+<div id="toast" class="toast" role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
